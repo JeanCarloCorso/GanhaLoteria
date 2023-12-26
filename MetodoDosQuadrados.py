@@ -20,7 +20,6 @@ def EscolheNumeros():
         quadrantesSelecionados.add(random.choice(intervaloQuadrantes))
     quadrantesSelecionados = list(quadrantesSelecionados)
 
-    print(quadrantesSelecionados)
     for x in range(7):
         linhas.append(random.choice([0, 1]))
         colunas.append(random.choice([0, 1]))
@@ -36,9 +35,9 @@ def ImprimeJogos(bilhete, quadrantes, linhas, colunas):
         coluna = (quadrantes[x] - (delta * 5)) * 2 + colunas[x]
         numerosSorteados.append(bilhete[linha][coluna])
 
-    print(numerosSorteados)
+    MostraBilhete(bilhete, numerosSorteados)
 
-def MostraBilhete(bilhete):
+def MostraBilhete(bilhete, numerosSorteados):
     print("+---------------------------------------+")
     print("+------Representação-dos-Quadrantes-----+", end="")
     for x in range(6):
@@ -53,7 +52,10 @@ def MostraBilhete(bilhete):
                 fim = " | "
             elif j != 9:
                 fim = " "
-            print(bilhete[x][j], end=fim)
+            if bilhete[x][j] in numerosSorteados:
+                print("\033[1;30;107m" + str(bilhete[x][j]) + "\033[0m", end=fim)
+            else:
+                print(bilhete[x][j], end=fim)
     print("\n+-------+-------+-------+-------+-------+")
 #MostraBilhete(bilhete)
 EscolheNumeros()
