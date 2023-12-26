@@ -9,6 +9,35 @@ def GeraBilhete():
             bilhete[x][j] = '{:02d}'.format(contador)
     return bilhete
 
+def EscolheNumeros():
+    intervaloQuadrantes = range(1, 16)
+    quadrantesSelecionados = set()
+
+    linhas = []
+    colunas = []
+
+    while len(quadrantesSelecionados) < 6:
+        quadrantesSelecionados.add(random.choice(intervaloQuadrantes))
+    quadrantesSelecionados = list(quadrantesSelecionados)
+
+    print(quadrantesSelecionados)
+    for x in range(7):
+        linhas.append(random.choice([0, 1]))
+        colunas.append(random.choice([0, 1]))
+    
+    bilhete = GeraBilhete()
+    ImprimeJogos(bilhete, quadrantesSelecionados, linhas, colunas)
+
+def ImprimeJogos(bilhete, quadrantes, linhas, colunas):
+    numerosSorteados = []
+    for x in range(len(quadrantes)):
+        delta = quadrantes[x] // 5
+        linha = (delta * 2) + linhas[x]
+        coluna = (quadrantes[x] - (delta * 5)) * 2 + colunas[x]
+        numerosSorteados.append(bilhete[linha][coluna])
+
+    print(numerosSorteados)
+
 def MostraBilhete(bilhete):
     print("+---------------------------------------+")
     print("+------Representação-dos-Quadrantes-----+", end="")
@@ -26,35 +55,5 @@ def MostraBilhete(bilhete):
                 fim = " "
             print(bilhete[x][j], end=fim)
     print("\n+-------+-------+-------+-------+-------+")
-
-def EscolheNumeros():
-    intervaloQuadrantes = range(1, 16)
-    quadrantesSelecionados = set()
-
-    linhas = []
-    colunas = []
-
-    while len(quadrantesSelecionados) < 6:
-        quadrantesSelecionados.add(random.choice(intervaloQuadrantes))
-    quadrantesSelecionados = list(quadrantesSelecionados)
-
-    for x in range(7):
-        linhas.append(random.choice([0, 1]))
-        colunas.append(random.choice([0, 1]))
-    
-    bilhete = GeraBilhete()
-    ImprimeJogos(bilhete, quadrantesSelecionados, linhas, colunas)
-
-def ImprimeJogos(bilhete, quadrantes, linhas, colunas):
-    numerosSorteados = []
-    for x in range(len(quadrantes)):
-        delta = quadrantes[x] // 5
-        linha = (linhas[x] * 2) + linhas[x]
-        coluna = (quadrantes[x] - (delta * 5)) * 2 + colunas[x]
-        numerosSorteados.append(bilhete[linha][coluna])
-
-    print(numerosSorteados)
-
-
 #MostraBilhete(bilhete)
 EscolheNumeros()
