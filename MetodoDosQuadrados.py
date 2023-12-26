@@ -38,24 +38,20 @@ def ImprimeJogos(bilhete, quadrantes, linhas, colunas):
     MostraBilhete(bilhete, numerosSorteados)
 
 def MostraBilhete(bilhete, numerosSorteados):
-    print("+---------------------------------------+")
-    print("+------Representação-dos-Quadrantes-----+", end="")
+    print("+-------------------------------+")
+    print("+----Representação-do-Bilhete---+")
+    print("+-------------------------------+")
+    
     for x in range(6):
-        if (x) % 2 == 0:
-            print("\n+-------+-------+-------+-------+-------+")
-        else:
-            print("")
+        if (x) != 0:
+            print("|")
         print("| ", end="")
         for j in range(10):
-            fim = ""
-            if j % 2 != 0:
-                fim = " | "
-            elif j != 9:
-                fim = " "
+            fim = " "
             if bilhete[x][j] in numerosSorteados:
                 print("\033[1;30;107m" + str(bilhete[x][j]) + "\033[0m", end=fim)
             else:
                 print(bilhete[x][j], end=fim)
-    print("\n+-------+-------+-------+-------+-------+")
+    print("|\n+-------------------------------+")
 #MostraBilhete(bilhete)
 EscolheNumeros()
