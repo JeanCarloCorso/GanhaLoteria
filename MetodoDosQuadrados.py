@@ -10,7 +10,7 @@ def GeraBilhete():
     return bilhete
 
 def EscolheNumeros():
-    intervaloQuadrantes = range(1, 16)
+    intervaloQuadrantes = range(15)
     quadrantesSelecionados = set()
 
     linhas = []
@@ -29,10 +29,14 @@ def EscolheNumeros():
 
 def ImprimeJogos(bilhete, quadrantes, linhas, colunas):
     numerosSorteados = []
+    print(quadrantes)
     for x in range(len(quadrantes)):
         delta = quadrantes[x] // 5
         linha = (delta * 2) + linhas[x]
+        print("Linha: " + str(linha))
         coluna = (quadrantes[x] - (delta * 5)) * 2 + colunas[x]
+        
+        print("Coluna: " + str(coluna))
         numerosSorteados.append(bilhete[linha][coluna])
 
     MostraBilhete(bilhete, numerosSorteados)
